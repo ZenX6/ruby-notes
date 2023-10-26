@@ -37,7 +37,7 @@ puts first_in_array(["a", "b", "c", "d"], "d", "b"); # => "b"
 puts first_in_array(["cat", "bird" ,"dog", "mouse" ], "dog", "mouse"); # => "dog"
 
 def abbreviate_sentence(str)
-  words = str.split(' ')
+  words = str.  split(' ')
   new_words = words.map do |word|
     if word.length > 4
       remove_vowels(word)
@@ -54,3 +54,13 @@ def remove_vowels(word)
 end
 puts abbreviate_sentence("follow the yellow brick road") # => "fllw the yllw brck road"
 puts abbreviate_sentence("what a wonderful life")        # => "what a wndrfl life"
+
+
+def format_name(name)
+  words = name.split(' ')
+  result = words.map { |word| word.capitalize }
+  return result.join(' ')
+end
+
+puts format_name("chase WILSON") # => "Chase Wilson"
+puts format_name("brian CrAwFoRd scoTT") # => "Brian Crawford Scott"
