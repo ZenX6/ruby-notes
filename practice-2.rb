@@ -63,3 +63,49 @@ puts
 
 print combinations([0, 1, 2, 3]); # => [ [ 0, 1 ], [ 0, 2 ], [ 0, 3 ], [ 1, 2 ], [ 1, 3 ], [ 2, 3 ] ]
 puts
+
+
+def opposite_count(nums)
+  count = 0
+
+  nums.each do |num|
+    if nums.include?(-num)
+      count += 0.5
+    end
+  end
+
+  return count.to_i
+
+
+end
+
+puts opposite_count([ 2, 5, 11, -5, -2, 7 ]) # => 2
+puts opposite_count([ 21, -23, 24 -12, 23 ]) # => 1
+
+
+
+def two_d_sum(arr)
+  sum = 0
+
+  arr.each do |subArr|
+    subArr.each do |num|
+      sum += num
+    end
+  end
+
+  return sum
+
+end
+
+array_1 = [
+  [4, 5],
+  [1, 3, 7, 1]
+]
+puts two_d_sum(array_1)    # => 21
+
+array_2 = [
+  [3, 3],
+  [2],
+  [2, 5]
+]
+puts two_d_sum(array_2)    # => 15
