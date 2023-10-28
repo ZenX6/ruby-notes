@@ -66,3 +66,55 @@ end
 
 puts ae_count("everyone can program") #=> {"a"=>2, "e"=>3}
 puts ae_count("keyboard") #=> {"a"=>1, "e"=>1}
+
+def element_count(arr)
+  count = {}
+
+  arr.each do |element|
+    if count.has_key?(element)
+      count[element] += 1
+    else
+    count[element] = 1
+    end
+  end
+  count
+end
+
+
+puts element_count(["a", "b", "a", "a", "b"]) #=> {"a"=>3, "b"=>2}
+puts element_count(["red", "red", "blue", "green"]) #=> {"red"=>2, "blue"=>1, "green"=>1}
+
+
+def select_upcase_keys(hash)
+  selected = {}
+
+  hash.each do |key,value|
+    if key == key.upcase
+      selected[key] = value
+    end
+  end
+
+  selected
+
+end
+
+print select_upcase_keys({"make"=> "Tesla", "MODEL"=> "S", "Year"=> 2018, "SEATS"=> 4}) # => {"MODEL"=>"S", "SEATS"=>4}
+puts
+
+print select_upcase_keys({"DATE"=>"July 4th","holiday"=> "Independence Day", "type"=>"Federal"}) # => {"DATE"=>"July 4th"}
+puts
+
+def hand_score(hand)
+  point = {
+    'A' => 4,
+    'K' => 3,
+    'Q' => 2,
+    'J' => 1
+}
+
+   score = 0
+   hand.each_char { |char| score += point[char.upcase] }
+   return score
+  end
+puts hand_score("AQAJ") #=> 11
+puts hand_score("jJka") #=> 9
