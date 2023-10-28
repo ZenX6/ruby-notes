@@ -50,3 +50,60 @@ def yell_sentence(sent)
 end
 
 puts yell_sentence("I have a bad feeling about this") #=> "I! HAVE! A! BAD! FEELING! ABOUT! THIS!"
+
+
+def whisper_words(words)
+
+  words.map { |word| word.downcase + '...'}
+
+end
+
+print whisper_words(["KEEP", "The", "NOISE", "down"]) # => ["keep...", "the...", "noise...", "down..."]
+puts
+
+def o_words(sentence)
+  words = sentence.split(' ')
+
+ words.select { |word| word.include?('o')}
+
+
+
+end
+
+print o_words("How did you do that?") #=> ["How", "you", "do"]
+puts
+
+def last_index(str, char)
+  i = str.length - 1
+
+  while i >= 0
+    if str[i] == char
+      return i
+    else
+      i -= 1
+    end
+  end
+
+
+
+end
+
+puts last_index("abca", "a")       #=> 3
+puts last_index("mississipi", "i") #=> 9
+puts last_index("octagon", "o")    #=> 5
+puts last_index("programming", "m")#=> 7
+
+
+def most_vowels(sentence)
+  def count_vowels(word)
+    vowels = 'aeiou'
+    count = 0
+    word.each_char { |char| count += 1 if vowels.include?(char) }
+    count
+  end
+
+  sentence.split.max_by { | word | count_vowels(word)}
+
+end
+
+print most_vowels("what a wonderful life") #=> "wonderful"
