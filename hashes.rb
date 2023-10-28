@@ -118,3 +118,71 @@ def hand_score(hand)
   end
 puts hand_score("AQAJ") #=> 11
 puts hand_score("jJka") #=> 9
+
+
+def frequent_letters(string)
+  count = Hash.new(0)
+
+  string.each_char do |char|
+    count[char] += 1
+  end
+
+  frequent = count.select{ |k,v| v >= 2 }.keys
+  frequent
+
+end
+
+print frequent_letters('mississippi') #=> ["i", "s"]
+puts
+print frequent_letters('bootcamp') #=> []
+puts
+
+def hash_to_pairs(hash)
+  hash.map { |k, v| [ k ,v ] }
+
+end
+
+
+print hash_to_pairs({"name"=>"skateboard", "wheels"=>4, "weight"=>"7.5 lbs"}) #=> [["name", "skateboard"], ["wheels", 4], ["weight", "7.5 lbs"]]
+puts
+
+
+print hash_to_pairs({"kingdom"=>"animalia", "genus"=>"canis", "breed"=>"German Shepherd"}) #=> [["kingdom", "animalia"], ["genus", "canis"], ["breed", "German Shepherd"]]
+puts
+
+
+# Hint: all keys of a hash are automatically unique
+
+def unique_elements(arr)
+  hash = {}
+
+  arr.each { |element| hash[element] = true }
+
+  hash.keys
+
+end
+
+print unique_elements(['a', 'b', 'a', 'a', 'b', 'c']) #=> ["a", "b", "c"]
+puts
+
+
+def element_replace(arr, hash)
+  arr.map do |element|
+    if hash.has_key?(element)
+      hash[element]
+    else
+      element
+    end
+  end
+
+end
+
+arr1 = ["LeBron James", "Lionel Messi", "Serena Williams"]
+hash1 = {"Serena Williams"=>"tennis", "LeBron James"=>"basketball"}
+print element_replace(arr1, hash1) # => ["basketball", "Lionel Messi", "tennis"]
+puts
+
+arr2 = ["dog", "cat", "mouse"]
+hash2 = {"dog"=>"bork", "cat"=>"meow", "duck"=>"quack"}
+print element_replace(arr2, hash2) # => ["bork", "meow", "mouse"]
+puts
