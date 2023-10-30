@@ -56,3 +56,46 @@ end
 
 puts double_letter_count("the jeep rolled down the hill") #=> 3
 puts double_letter_count("bootcamp") #=> 1
+
+
+def adjacent_sum(arr)
+  sums = []
+
+  (0...arr.length - 1).each do |i|
+    sums << arr[i] + arr[i + 1]
+  end
+
+  sums
+
+end
+
+print adjacent_sum([3, 7, 2, 11]) #=> [10, 9, 13], because [ 3+7, 7+2, 2+11 ]
+puts
+print adjacent_sum([2, 5, 1, 9, 2, 4]) #=> [7, 6, 10, 11, 6], because [2+5, 5+1, 1+9, 9+2, 2+4]
+puts
+
+# For example, the base [1, 4, 6] gives us the following pyramid
+#     15
+#   5   10
+# 1   4    6
+
+def pyramid_sum(base)
+  pyramid = [base]
+
+  while pyramid[0].length > 1
+    prev_level = pyramid[0]
+    next_level = []
+
+    (0...prev_level.length - 1).each do |i|
+      next_level << prev_level[i] + prev_level[i + 1]
+  end
+  pyramid.unshift(next_level)
+  end
+  pyramid
+end
+
+print pyramid_sum([1, 4, 6]) #=> [[15], [5, 10], [1, 4, 6]]
+puts
+
+print pyramid_sum([3, 7, 2, 11]) #=> [[41], [19, 22], [10, 9, 13], [3, 7, 2, 11]]
+puts
