@@ -1,21 +1,17 @@
-var sumNumbers = function(root) {
-    let totalSum = 0
+var maxPathSum = function(root) {
+    let maxSum = -Infinity
 
-    function dfs(node, currentNum) {
-        if (node === null) {
-            return
-        }
+    function dfs(node) {
+        if (node === null) return 0
 
-        currentNum = currentNum * 10 + node.val
+        let leftMax = Math.max(0, dfs(node.left))
+        let rightMax = Math.max(0, dfs(node.right))
 
-        if (node.left === null && node.right === null) {
-            totalSum += currentNum
-            return
-        }
-        dfs(node.left, currentNum)
-        dfs(node.right, currentNum)
+        maxSum = Math.max(maxSum, node.val + leftMax + rightMax)
+
+        return node.val + Math.max(leftMax, rightMax)
     }
 
-    dfs(root, 0)
-    return totalSum
+    dfs(root)
+    return maxSum
 };
