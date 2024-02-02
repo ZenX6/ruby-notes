@@ -99,3 +99,78 @@ puts
 
 print pyramid_sum([3, 7, 2, 11]) #=> [[41], [19, 22], [10, 9, 13], [3, 7, 2, 11]]
 puts
+
+
+def all_else_equal(arr)
+  total_sum = arr.sum
+  half_sum = total_sum / 2
+
+  if arr.include?(half_sum)
+    return half_sum
+  else
+    return nil
+  end
+end
+
+p all_else_equal([2, 4, 3, 10, 1]) #=> 10, because the sum of all elements is 20
+p all_else_equal([6, 3, 5, -9, 1]) #=> 3, because the sum of all elements is 6
+p all_else_equal([1, 2, 3, 4])     #=> nil, because the sum of all elements is 10 and there is no 5 in the array
+
+def anagrams?(word1, word2)
+  return word1.chars.sort == word2.chars.sort
+
+end
+
+puts anagrams?("cat", "act")          #=> true
+puts anagrams?("restful", "fluster")  #=> true
+puts anagrams?("cat", "dog")          #=> false
+puts anagrams?("boot", "bootcamp")    #=> false
+
+
+def consonant_cancel(sentence)
+  words = sentence.split
+  new_words = words.map { |word| remove_first_consonant(word) }
+  return new_words.join(" ")
+end
+
+def remove_first_consonant(word)
+  vowels = "aeiou"
+  word.each_char.with_index do |char, i|
+    if vowels.include?(char)
+      return word[i..-1]
+    end
+  end
+end
+
+puts consonant_cancel("down the rabbit hole") #=> "own e abbit ole"
+puts consonant_cancel("writing code is challenging") #=> "iting ode is allenging"
+
+
+def same_char_collapse(str)
+  collapse = true
+
+  while collapse
+    collapse = false
+
+    chars = str.split('')
+    (0...chars.length - 1).each do |i|
+      if chars[i] == chars[i + 1]
+        chars[i] = ""
+        chars[i + 1] = ""
+        collapse = true
+        break
+      end
+    end
+    str = chars.join("")
+  end
+
+  str
+
+end
+
+puts same_char_collapse("zzzxaaxy")   #=> "zy"
+# because zzzxaaxy -> zxaaxy -> zxxy -> zy
+
+
+puts same_char_collapse("uqrssrqvtt") #=> "uv"
+# because uqrssrqvtt -> uqrrqvtt -> uqqvtt -> uvtt -> uv
