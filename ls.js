@@ -1,17 +1,19 @@
-var maxPathSum = function(root) {
-    let maxSum = -Infinity
+var merge = function(intervals) {
+    if (!intervals.length) return []
+    
+    intervals.sort((a, b) => a[0] -  b[0])
 
-    function dfs(node) {
-        if (node === null) return 0
+    const merged = [intervals[0]]
 
-        let leftMax = Math.max(0, dfs(node.left))
-        let rightMax = Math.max(0, dfs(node.right))
+    for (let i = 1; i < intervals.length; i++) {
+        const [start, end] = intervals[i]
+        const lastEnd = merged[merged.length - 1][1]
 
-        maxSum = Math.max(maxSum, node.val + leftMax + rightMax)
-
-        return node.val + Math.max(leftMax, rightMax)
+        if (start <= lastEnd) {
+            merged[merged.length - 1][1] = Math.max(lastEnd, end)
+        } else {
+            merged.push(intervals[i])
+        }
     }
-
-    dfs(root)
-    return maxSum
+    return merged
 };
